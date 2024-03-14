@@ -1,0 +1,1 @@
+docker build -t vutiendat3601/beatbuddy-nginxgateway:1.0.0 .
