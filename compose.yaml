@@ -1,13 +1,9 @@
 version: '3.8'
 services:
   nginxgateway:
-    image: vutiendat3601/beatbuddy-nginxgateway:1.0.0
+    image: vutiendat3601/beatbuddy-nginx-gateway:1.0.0
     ports:
-      - 88:80
-    # volumes:
-      # - ./conf.d/:/etc/nginx/conf.d/
-      # - ./script/:/script/
-      # - ./entrypoint/entrypoint.sh:/docker-entrypoint.sh
+      - 80:80
     environment:
       - GATEWAY_PROXY_CONFIG_DIR=/etc/nginx/conf.d
       - GATEWAY_REFRESH_SEC=5
