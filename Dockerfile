@@ -1,15 +1,13 @@
 FROM nginx:mainline-bookworm
 WORKDIR /script
 
-# COPY ./script/*.sh /docker-entrypoint.d
 RUN apt-get update && apt-get install -y jq
 
 COPY ./conf.d/default.conf /etc/nginx/conf.d/
 COPY ./script/*.sh /script/
-RUN mkdir /etc/nginx/conf.d/proxy
+RUN mkdir -p /etc/nginx/conf.d/proxy
 RUN touch /etc/nginx/conf.d/proxy/upstream.conf
 RUN touch /etc/nginx/conf.d/proxy/location.conf
-# COPY ./conf.d/proxy /etc/nginx/conf.d/proxy/
 
 COPY ./entrypoint/10-listen-on-ipv6-by-default.sh /docker-entrypoint.d/
 COPY ./entrypoint/15-local-resolvers.envsh /docker-entrypoint.d/ 

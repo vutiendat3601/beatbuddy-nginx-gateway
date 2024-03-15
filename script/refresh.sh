@@ -17,8 +17,9 @@ location_conf_new="$location_conf_file.new"
 paths=($upstream_conf_new $location_conf_new)
 for path in "${paths[@]}";  do
     if [ -e "$path" ]; then
-        rm "$path"
-        echo "File '$path' removed."
+        rm "$path" && touch "$path"
+    else
+        touch "$path"
     fi
 done
 for service_id in "${service_ids[@]}"; do
